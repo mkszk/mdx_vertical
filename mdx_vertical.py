@@ -43,7 +43,7 @@ class VerticalProcessor(BlockProcessor):
         else:
             # This is a new vertical. Create a new parent element.
             vertical = etree.SubElement(parent, 'div')
-            vertical.set('style', 'writing-mode:vertical-rl;'\
+            vertical.set('style', 'writing-mode:vertical-rl;text-indent:1em;'\
                        + ''.join(x + 'column-width:'+self.config['column']+';'\
                            for x in ('', '-moz-', '-webkit-', '-o-', '-ms-'))\
                        + vertical.get('style', ''))
