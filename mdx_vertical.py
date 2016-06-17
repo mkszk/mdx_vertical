@@ -44,7 +44,9 @@ class VerticalProcessor(BlockProcessor):
             # This is a new vertical. Create a new parent element.
             vertical = etree.SubElement(parent, 'div')
             vertical.set('style', 'writing-mode:vertical-rl;text-indent:1em;'\
-                       + 'height:30em;' + vertical.get('style', ''))
+                       + ''.join(x + 'column-width:'+self.config['column']+';'\
+                           for x in ('', '-moz-', '-webkit-', '-o-', '-ms-'))\
+                       + vertical.get('style', ''))
         # Recursively parse block with vertical as parent.
         # change parser state so top2bottom embedded in lists use p tags
         self.parser.parseChunk(vertical, block)
